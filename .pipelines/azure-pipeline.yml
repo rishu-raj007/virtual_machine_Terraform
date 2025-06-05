@@ -1,0 +1,65 @@
+trigger: 
+- main
+pool:
+ name: uzumaki-pool
+stages:
+  - stage: terraformPlan
+    displayName: Terraform init & plan
+    jobs:
+      - job: terraformCommands
+        steps:
+        - task: TerraformInstaller@1
+          inputs:
+            terraformVersion: 'latest'
+        - task: TerraformTask@5
+          displayName: terraform init
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/env/dev'
+            backendServiceArm: 'azure-pipeline-infra'
+            backendAzureRmStorageAccountName: 'pipelinestrg123'
+            backendAzureRmContainerName: 'pipeline-backend'
+            backendAzureRmKey: 'terraform.tfstate'
+        - task: TerraformTask@5
+          displayName: terraform plan
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/env/dev'
+            environmentServiceNameAzureRM: 'azure-pipeline-infra'
+  - stage: ManualValidation
+    dependsOn: terraformPlan
+    condition: succeeded()
+    jobs:
+      - job: manualValidation
+        pool: server
+        steps:
+        - task: ManualValidation@1
+          inputs:
+            notifyUsers: 'rahul747979@gmail.com'
+            approvers: 'rahul'
+  - stage: terraformApply
+    dependsOn: ManualValidation
+    condition: succeeded()
+    jobs:
+      - job: TeraformApply
+        steps:
+        - task : TerraformInstaller@1
+          displayName: Terraform Installing
+          inputs:
+            terraformVersion: 'latest'
+        - task : TerraformTask@5
+          displayName: terraorm Init
+          inputs:
+           command: init
+           workingDirectory: '$(System.DefaultWorkingDirectory)/env/dev'
+           backendServiceArm: 'azure-pipeline-infra'
+           backendAzureRmStorageAccountName: 'pipelinestrg123'
+           backendAzureRmContainerName: 'pipeline-backend'
+           backendAzureRmKey: 'terraform.tfstate'
+            
+
+        
+        
+       
