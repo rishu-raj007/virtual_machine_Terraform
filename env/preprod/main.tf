@@ -4,6 +4,7 @@ module "resource_group" {
   
 }
 module "vnet" {
+  depends_on = [ module.resource_group ]
     source = "../../modules/vnet"
     vnet1=var.parent_vnet1
   

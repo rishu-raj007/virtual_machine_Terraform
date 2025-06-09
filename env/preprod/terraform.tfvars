@@ -7,7 +7,7 @@ parent_rg2 = {
 parent_vnet1 = {
     "vnet1"={
         vnet_name="vnet_vm_terraform"
-        address_space=["10.0.0.0/26"]
+        address_space=["10.0.0.0/20"]
         rg_name= "rg_vm_terraform"
         location ="eastus"
     }
@@ -15,15 +15,15 @@ parent_vnet1 = {
 parent_subnet = {
     "frontend"={
         rg_name="rg_vm_terraform"
-        name ="subnet_vm_terraform"
+        name ="subnet_vm_terraform_frontend"
         vnet_name="vnet_vm_terraform"
         address_prefix=["10.0.0.0/29"]
     }
     "backend"={
-        rg_name="rg_vm_terraform_backend"
+        rg_name="rg_vm_terraform"
         name ="subnet_vm_terraform_backend"
         vnet_name="vnet_vm_terraform"
-        address_prefix=["10.0.0.0/29"]
+        address_prefix=["10.0.0.8/29"]
     }
 }
 parent_nic = {
@@ -53,7 +53,7 @@ parent_vm = {
         storage_os_dsk_caching = "ReadWrite"
         create_option = "FromImage"
         managed_disk_type = "Standard_LRS"
-        computer_name = "vm-terraform"
+        # computer_name = "vmTerraform"
         admin_username = "azureadmin"
         admin_password = "chholabhatura@1234"   
         
