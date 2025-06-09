@@ -1,6 +1,7 @@
 variable "subscription_id" {
     type = string
     default = "4c09d51a-2dd9-421f-bff0-ca616d92ca42"
+    sensitive = true
 }
 variable "parent_rg2" {
   
