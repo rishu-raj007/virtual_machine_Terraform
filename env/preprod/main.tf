@@ -16,7 +16,7 @@ module "subnet" {
   
 }
 module "nic" {
-  depends_on = [ module.subnet ]
+  depends_on = [ module.subnet, module.public_ip ]
   source = "../../modules/nic"
   nic = var.parent_nic
   subnet_id = module.subnet.id["backend"]
@@ -30,4 +30,9 @@ module "vm" {
   admin_username = var.parent_admin_username
   admin_password = var.parent_admin_password
   
+}
+module "public_ip" {
+  depends_on = [ module.resource_group ]
+  source = "../../modules/public_ip"
+  public_ip = var.parent_public_ip
 }

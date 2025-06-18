@@ -35,3 +35,6 @@ variable "parent_admin_password" {
     default = "pentaloons@1234"
   
 }
+variable "parent_public_ip" {
+  
+}

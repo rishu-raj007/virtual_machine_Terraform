@@ -59,3 +59,11 @@ parent_vm = {
         
     }
 }
+parent_public_ip = {
+    "pip"={
+        name = "pip_vm_terraform"
+        rg_name = "rg_vm_terraform"
+        location = "eastus"
+        allocation_method = "Static"
+    }
+}
