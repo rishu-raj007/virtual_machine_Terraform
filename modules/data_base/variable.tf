@@ -1,0 +1,3 @@
+variable "mysql_server" {
+  
+}
