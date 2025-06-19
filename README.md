@@ -23,19 +23,3 @@ This project automates the provisioning of a complete Azure infrastructure using
 
 ---
 
-## Project Structure
-
-```plaintext
-terraform/
-├── modules/
-│   ├── network/
-│   ├── compute/
-│   ├── database/
-│   └── keyvault/
-├── environments/
-│   └── dev/
-│       ├── main.tf
-│       ├── variables.tf
-│       ├── outputs.tf
-│       └── terraform.tfvars
-└── backend.tf
