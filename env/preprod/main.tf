@@ -42,6 +42,7 @@ module "public_ip" {
 
 # }
 module "nsg" {
+  depends_on = [ module.resource_group, module.vnet]
   source = "../../modules/nsg"
   
 }
