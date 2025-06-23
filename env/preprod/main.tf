@@ -36,8 +36,16 @@ module "public_ip" {
   source     = "../../modules/public_ip"
   public_ip  = var.parent_public_ip
 }
-module "sql-server" {
-  source       = "../../modules/data_base"
-  mysql_server = var.parent_mysql_server
+# module "sql-server" {
+#   source       = "../../modules/data_base"
+#   mysql_server = var.parent_mysql_server
 
+# }
+module "nsg" {
+  source = "../../modules/nsg"
+  
+}
+module "nsgassoc" {
+  depends_on = [ module.nic, module.nsg, module.resource_group]
+  source = "../../modules/nic_ngg_assoc"
 }

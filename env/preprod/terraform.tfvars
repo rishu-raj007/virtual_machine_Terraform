@@ -1,7 +1,7 @@
 parent_rg2 = {
   "rg" = {
     rg_name  = "rg_vm_terraform"
-    location = "eastus"
+    location = "centralindia"
   }
 }
 parent_vnet1 = {
@@ -9,7 +9,7 @@ parent_vnet1 = {
     vnet_name     = "vnet_vm_terraform"
     address_space = ["10.0.0.0/20"]
     rg_name       = "rg_vm_terraform"
-    location      = "eastus"
+    location      = "centralindia"
   }
 }
 parent_subnet = {
@@ -29,7 +29,7 @@ parent_subnet = {
 parent_nic = {
   "nic" = {
     name                  = "nic_vm_terraform"
-    location              = "eastus"
+    location              = "centralindia"
     rg_name               = "rg_vm_terraform"
     ip_config_name        = "ipconfig_vm_terraform"
     private_ip_allocation = "Dynamic"
@@ -39,15 +39,15 @@ parent_nic = {
 parent_vm = {
   vm = {
     name           = "vm_terraform"
-    location       = "eastus"
+    location       = "centralindia"
     rg_name        = "rg_vm_terraform"
-    size           = "Standard_DS1_v2"
+    size           = "Standard_D2s_v3"
     admin_username = "azureuser"
     admin_password = "P@ssw0rd1234!"
     # This should match the NIC name defined in parent_nic
     publisher              = "Canonical"
-    offer                  = "0001-com-ubuntu-server-jammy"
-    sku                    = "22_04-lts"
+    offer                  = "0001-com-ubuntu-server-focal"
+    sku                    = "20_04-lts"
     virsion                = "latest"
     storage_os_dsk_name    = "myosdisk1"
     storage_os_dsk_caching = "ReadWrite"
@@ -63,14 +63,14 @@ parent_public_ip = {
   "pip" = {
     name              = "pip_vm_terraform"
     rg_name           = "rg_vm_terraform"
-    location          = "eastus"
+    location          = "centralindia"
     allocation_method = "Static"
   }
 }
 parent_mysql_server = {
   "mysql-server" = {
     name                             = "mysql-server-terraform"
-    location                         = "eastus"
+    location                         = "centralindia"
     resource_group_name              = "rg_vm_terraform"
     administrator_login              = "mysqladmin"
     administrator_login_password     = "P@ssw0rd1234!"
