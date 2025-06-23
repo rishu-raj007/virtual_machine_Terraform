@@ -2,6 +2,11 @@ data "azurerm_public_ip" "pip" {
   name                = "pip_vm_terraform"
   resource_group_name = "rg_vm_terraform"
 }
+data "azurerm_network_security_group" "nsg" {
+  name = "acceptanceTestSecurityGroup1"
+  resource_group_name = "rg_vm_terraform"
+  
+}
 resource "azurerm_network_interface" "nic" {
     for_each = var.nic
     name                = each.value.name

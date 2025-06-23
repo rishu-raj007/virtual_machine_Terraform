@@ -23,6 +23,18 @@ resource "azurerm_linux_virtual_machine" "example" {
      sku       = each.value.sku
    version   = each.value.virsion
   }
+    custom_data = base64encode(<<-EOF
+              #!/bin/bash
+              apt-get update
+              apt-get install -y nginx
+              systemctl enable nginx
+              systemctl start nginx
+              git clone https://github.com/devopsinsiders/StreamFlix.git
+              cd StreamFlix
+              cp -r * /var/www/html/
+              EOF
+  )
+
 }
 
 
