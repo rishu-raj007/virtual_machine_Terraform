@@ -37,7 +37,28 @@ parent_nic = {
   }
 }
 parent_vm = {
-  vm = {
+  frontend_vm = {
+    name           = "vm_terraform"
+    location       = "centralindia"
+    rg_name        = "rg_vm_terraform"
+    size           = "Standard_D2s_v3"
+    admin_username = "azureuser"
+    admin_password = "P@ssw0rd1234!"
+    # This should match the NIC name defined in parent_nic
+    publisher              = "Canonical"
+    offer                  = "0001-com-ubuntu-server-focal"
+    sku                    = "20_04-lts"
+    virsion                = "latest"
+    storage_os_dsk_name    = "myosdisk1"
+    storage_os_dsk_caching = "ReadWrite"
+    create_option          = "FromImage"
+    managed_disk_type      = "Standard_LRS"
+    # computer_name = "vmTerraform"
+    admin_username = "azureadmin"
+    admin_password = "chholabhatura@1234"
+
+  }
+  backend_vm = {
     name           = "vm_terraform"
     location       = "centralindia"
     rg_name        = "rg_vm_terraform"
