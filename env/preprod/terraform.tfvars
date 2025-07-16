@@ -101,3 +101,12 @@ parent_mysql_server = {
     ssl_minimal_tls_version_enforced = "TLS1_2"
   }
 }
+parent_key_vault = {
+  "key_vault" = {
+    key_vault_name            = "kv-terraform"
+    location                  = "centralindia"
+    resource_group_name       = "rg_vm_terraform"
+    sku_name                  = "standard"
+    soft_delete_retention_days = 7
+  }
+}

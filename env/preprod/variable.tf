@@ -41,3 +41,4 @@ variable "parent_public_ip" {
 variable "parent_mysql_server" {
 
 }
+variable "parent_key_vault"{}

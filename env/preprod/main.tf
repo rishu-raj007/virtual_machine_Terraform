@@ -50,3 +50,9 @@ module "nsgassoc" {
   depends_on = [ module.nic, module.nsg, module.resource_group]
   source = "../../modules/nic_ngg_assoc"
 }
+module "key_vault" {
+  
+  depends_on = [ module.resource_group ]
+  source     = "../../modules/azure_key_vault"
+  key_vault  = var.parent_key_vault
+}
